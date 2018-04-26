@@ -29,11 +29,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.callback.CallBack;
+import com.zhouyou.http.callback.CallClazzProxy;
 import com.zhouyou.http.callback.ProgressDialogCallBack;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.demo.Api.LoginService;
 import com.zhouyou.http.demo.constant.AppConstant;
 import com.zhouyou.http.demo.constant.ComParamContact;
+import com.zhouyou.http.demo.customapi.test5.TestApiResult5;
 import com.zhouyou.http.demo.model.ApiInfo;
 import com.zhouyou.http.demo.model.AuthModel;
 import com.zhouyou.http.demo.model.SectionItem;
@@ -83,11 +85,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    
+    public void onLogin(View view){
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+    }
 
 
     public void onGet(View view) {
         EasyHttp.get("/v1/app/chairdressing/skinAnalyzePower/skinTestResult")
-                .readTimeOut(30 * 1000)//局部定义读超时
+                .readTimeOut(30 * 1000)//局部定义读超时 ,可以不用定义
                 .writeTimeOut(30 * 1000)
                 .connectTimeout(30 * 1000)
                 //.headers("","")//设置头参数
@@ -160,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
                 .execute(new SimpleCallBack<String>() {
                     @Override
                     public void onError(ApiException e) {
-                        showToast(e.getMessage());
+                        showToast(e.getMessage()+"  "+e.getCode());
                     }
 
                     @Override
@@ -174,9 +181,9 @@ public class MainActivity extends AppCompatActivity {
      * post提交json
      */
     public void onPostJson(View view) {
-        EasyHttp.post("api/xzbg/gwcl/getGwlist")
-                .baseUrl("http://218.25.174.167:7009/dlydbg/")
-                .upJson("{\"imei\":\"862155035349405\",\"imsi\":\"123456789\",\"phone\":\"18688994275\",\"swjg_dm\":\"\",\"swry_dm\":\"127053096\",\"version\":\"1.0.0\"}")
+        EasyHttp.post("api/")
+                .baseUrl("http://xxxx.xx.xx/dlydbg/")
+                .upJson("{\"\":\"\",\"\":\"\",\"\":\"\",\"swry_dm\":\"127053096\",\"version\":\"1.0.0\"}")
                 //这里不想解析，简单只是为了做演示 直接返回String
                 .execute(new SimpleCallBack<String>() {
                     @Override
@@ -190,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-    
+
     /**
      * put请求
      */
@@ -491,7 +498,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onCustomApiCall(View view) {
         final String name = "18688994275";
-        final String pass = "zy123456";
+        final String pass = "123456";
         final CustomRequest request = EasyHttp.custom()
                 .addConverterFactory(GsonConverterFactory.create(new Gson()))
                 .sign(true)
@@ -523,22 +530,24 @@ public class MainActivity extends AppCompatActivity {
 
     public void onListResult(View view) {
         //方式一：
-       /* EasyHttp.get("http://news-at.zhihu.com/api/3/sections")
-                .execute(new SimpleCallBack<List<SectionItem>>() {
+        /*EasyHttp.get("http://news-at.zhihu.com/api/3/sections")
+                .execute(new CallBackProxy<TestApiResult5<List<SectionItem>>, List<SectionItem>>(new SimpleCallBack<List<SectionItem>>() {
                     @Override
                     public void onError(ApiException e) {
                         showToast(e.getMessage());
                     }
 
                     @Override
-                    public void onSuccess(List<SectionItem> response) {
-                        if (response != null) showToast(response.toString());
+                    public void onSuccess(List<SectionItem> sectionItems) {
+                        showToast(sectionItems.toString());
                     }
+                }) {
                 });*/
         //方式二：
         /*Observable<List<SectionItem>> observable = EasyHttp.get("http://news-at.zhihu.com/api/3/sections")
-                .execute(new TypeToken<List<SectionItem>>() {
-                }.getType());
+                .execute(new CallClazzProxy<TestApiResult5<List<SectionItem>>, List<SectionItem>>(new TypeToken<List<SectionItem>>() {
+                }.getType()) {
+                });
         observable.subscribe(new Consumer<List<SectionItem>>() {
             @Override
             public void accept(@NonNull List<SectionItem> sectionItems) throws Exception {
@@ -552,8 +561,9 @@ public class MainActivity extends AppCompatActivity {
         });*/
         //方式三：
         Observable<List<SectionItem>> observable = EasyHttp.get("http://news-at.zhihu.com/api/3/sections")
-                .execute(new TypeToken<List<SectionItem>>() {
-                }.getType());
+                .execute(new CallClazzProxy<TestApiResult5<List<SectionItem>>, List<SectionItem>>(new TypeToken<List<SectionItem>>() {
+                }.getType()) {
+                });
         observable.subscribe(new ProgressSubscriber<List<SectionItem>>(MainActivity.this, mProgressDialog) {
             @Override
             public void onError(ApiException e) {
@@ -567,6 +577,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void onScene(View view){
+        Intent intent = new Intent(MainActivity.this, SceneActivity.class);
+        startActivity(intent);
+    }
+
 
     @Override
     protected void onDestroy() {

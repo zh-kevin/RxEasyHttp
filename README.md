@@ -1,7 +1,7 @@
 ## RxEasyHttp
 
 本库是一款基于RxJava2+Retrofit2实现简单易用的网络请求框架，结合android平台特性的网络封装库,采用api链式调用一点到底,集成cookie管理,多种缓存模式,极简https配置,上传下载进度显示,请求错误自动重试,请求携带token、时间戳、签名sign动态配置,自动登录成功后请求重发功能,3种层次的参数设置默认全局局部,默认标准ApiResult同时可以支持自定义的数据结构，已经能满足现在的大部分网络请求。
-*注：Retrofit和Rxjava是当下非常火爆的开源框架，均来自神一般的Square公司。本库就不介绍Retrofit和Rxjava2的用法。*
+*注：Retrofit和Rxjava是当下非常火爆的开源框架，均来自神一般的公司。本库就不介绍Retrofit和Rxjava2的用法。*
 
 ## 为什么会封装此库？
 网上好的开源网络库像Volley、async-http、okhttp、retrofit等都非常强大，但是实际应用中我们不会直接去使用，一般都会根据自己的业务再封装一层，这样更方便快捷，又能统一处理业务共性的东西例如：统一的数据结构（code、msg、data）、token处理、网络异常等情况。在使用retrofit来请求网络的时候，项目的需求越来越多，api也随之越来越多，一个普通的应用api一般也在100+左右。如果把这些api放在一个ApiService内会很臃肿，不利于查看api.如果采用模块的方式对api进行分类，每个模块对应若干个api.以retrofit的使用方式又需要创建若干个ApiService，这种方式维护方便，但是模块增多了，类也增多了很多。对于懒人来说就想通过一个URL就能回调你所需要的数据，什么ApiService都不想理会，同时又可以很快的与自己的业务相关联，就类似于代替你在开源网络库基础上再封装一层的作用，于是本库就应运而生。
@@ -12,7 +12,7 @@
 - 加入基础ApiService，减少Api冗余
 - 支持动态配置和自定义底层框架Okhttpclient、Retrofit.
 - 支持多种方式访问网络GET、POST、PUT、DELETE等请求协议
-- 支持网络缓存,六种缓存策略可选,涵盖大多数业务场景
+- 支持网络缓存,八种缓存策略可选,涵盖大多数业务场景
 - 支持固定添加header和动态添加header
 - 支持添加全局参数和动态添加局部参数
 - 支持文件下载、多文件上传和表单提交数据
@@ -38,26 +38,37 @@
 [![github](https://img.shields.io/badge/GitHub-zhou--you-green.svg)](https://github.com/zhou-you)   [![csdn](https://img.shields.io/badge/CSDN-zhouy478319399-green.svg)](http://blog.csdn.net/zhouy478319399)
 ## 联系方式
 本群旨在为使用我github项目的人提供方便，如果遇到问题欢迎在群里提问。
-#### 欢迎加入QQ交流群:581235049
+
+#### 欢迎加入QQ交流群 [![](https://img.shields.io/badge/%E7%82%B9%E6%88%91%E4%B8%80%E9%94%AE%E5%8A%A0%E5%85%A5QQ%E7%BE%A4-581235049-blue.svg)](http://shang.qq.com/wpa/qunwpa?idkey=1e1f4bcfd8775a55e6cf6411f6ff0e7058ff469ef87c4d1e67890c27f0c5a390)
 ![](http://img.blog.csdn.net/20170601165330238)
 ## 演示（请star支持）
-![](http://img.blog.csdn.net/20170608210826622)![](http://img.blog.csdn.net/20170609092207665) 
-![](http://img.blog.csdn.net/20170609093543947)![](http://img.blog.csdn.net/20170609092405916)
+![](https://github.com/zhou-you/RxEasyHttp/raw/master/screenshot/1.gif) ![](https://github.com/zhou-you/RxEasyHttp/raw/master/screenshot/2.gif)
+![](https://github.com/zhou-you/RxEasyHttp/raw/master/screenshot/3.gif) ![](https://github.com/zhou-you/RxEasyHttp/raw/master/screenshot/4.gif)
+
+### RxEasyHttp与Rxjava结合使用场景演示
+![](https://github.com/zhou-you/RxEasyHttp/raw/master/screenshot/5.gif)
+
+[RxEasyHttp网络库与Rxjava2结合常见使用场景介绍](http://blog.csdn.net/zhouy478319399/article/details/78550248)
+
+[![](https://badge.juejin.im/entry/5a0d4d0d6fb9a045080934f1/likes.svg?style=plastic)](https://juejin.im/post/5a0d4cd851882531ba108090)
+
 ## 版本说明
 
-#### 当前版本
-[![release](https://img.shields.io/badge/release-V2.0.1-orange.svg)](https://github.com/zhou-you/RxEasyHttp/blob/master/update.md)
+### 当前版本
+[![release](https://img.shields.io/badge/release-V2.0.5-orange.svg)](https://github.com/zhou-you/RxEasyHttp/blob/master/update.md)
 
 ## 用法介绍
 目前只支持主流开发工具AndtoidStudio的使用，没有提供Eclipse使用方式.
 本项目Demo的网络请求的服务器地址为了安全，把url去掉了，但是Demo程序中的示例都是ok的
 ### Demo下载
-[![downloads](https://img.shields.io/badge/downloads-430k-blue.svg)](https://github.com/zhou-you/RxEasyHttp/blob/master/RxEasyHttp-Demo.apk?raw=true)
+[![downloads](https://img.shields.io/badge/downloads-2.2M-blue.svg)](https://github.com/zhou-you/RxEasyHttp/blob/master/apk/rxeasyhttp-demo.apk?raw=true)
+#### 扫码下载Demo
+![](https://github.com/zhou-you/RxEasyHttp/blob/master/screenshot/down.png?raw=true)
 
 ### build.gradle设置
 ```
 dependencies {
- compile 'com.zhouyou:rxeasyhttp:2.0.1'
+ compile 'com.zhouyou:rxeasyhttp:2.0.5'
 }
 ```
 想查看所有版本，请点击下面地址。
@@ -133,10 +144,10 @@ public class MyApplication extends Application {
         EasyHttp.getInstance()
         
                 //可以全局统一设置全局URL
-                .setBaseUrl(Url)//设置全局URL
+                .setBaseUrl(Url)//设置全局URL  url只能是域名 或者域名+端口号 
 
                 // 打开该调试开关并设置TAG,不需要就不要加入该行
-                // 最后的true表示是否打印okgo的内部异常，一般打开方便调试错误
+                // 最后的true表示是否打印内部异常，一般打开方便调试错误
                 .debug("EasyHttp", true)
                 
                 //如果使用默认的60秒,以下三行也不需要设置
@@ -282,6 +293,7 @@ Url可以通过初始化配置的时候传入`EasyHttp.getInstance().setBaseUrl(
 入口方法传入： `EasyHttp.get("/v1/app/chairdressing/skinAnalyzePower/skinTestResult").baseUrl("http://www.xxxx.com")`
 如果入口方法中传入的url含有http或者https,则不会拼接初始化设置的baseUrl.
 例如：`EasyHttp.get("http://www.xxx.com/v1/app/chairdressing/skinAnalyzePower/skinTestResult")`则setBaseUrl()和baseUrl()传入的baseurl都不会被拼接。
+*注:EasyHttp.get/post/put/等采用拼接的用法时请注意，url要用/斜杠开头，例如：`EasyHttp.get("/v1/login")` 正确  ` EasyHttp.get("v1/login")` 错误*
 #### http请求参数
 两种设置方式
 .params(HttpParams params)
@@ -513,7 +525,10 @@ Observable<SkinTestResult> observable = EasyHttp.get(url)
 - `.requestBody(body)//上传自定义RequestBody`
 - `.upObject(object)//上传对象object`   必须要增加`.addConverterFactory(GsonConverterFactory.create())`设置
 
-*注：upString、upJson、requestBody、upBytes、upObject五个方法不能同时使用，当前只能选用一个*
+
+> 1.upString、upJson、requestBody、upBytes、upObject五个方法不能同时使用，当前只能选用一个
+> 2.使用upJson、upObject时候params、sign(true/false)、accessToken（true/false）、拦截器都不会起作用
+
 
 示例：
 ``` 
@@ -1223,7 +1238,7 @@ public class MyApplication extends Application {
             EasyHttp.getInstance()
             		...
                     // 打开该调试开关并设置TAG,不需要就不要加入该行
-                    // 最后的true表示是否打印okgo的内部异常，一般打开方便调试错误
+                    // 最后的true表示是否打印内部异常，一般打开方便调试错误
                     .debug("EasyHttp", true);
         }
     }
@@ -1245,10 +1260,51 @@ public class MyApplication extends Application {
 7.save status => true保存缓存的状态
 ## 混淆
 ```
+#okhttp
+-dontwarn com.squareup.okhttp3.**
+-keep class com.squareup.okhttp3.** { *;}
+-dontwarn okio.**
+
+# Retrofit
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+-keepattributes Exceptions
+
+# Retrolambda
+-dontwarn java.lang.invoke.*
+
+# RxJava RxAndroid
+-dontwarn sun.misc.**
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+    long producerIndex;
+    long consumerIndex;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode producerNode;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}
+###rxandroid-1.2.1
+-keepclassmembers class rx.android.**{*;}
+
+# Gson
+-keep class com.google.gson.stream.** { *; }
+-keepattributes EnclosingMethod
+-keep class org.xz_sale.entity.**{*;}
+-keep class com.google.gson.** {*;}
+-keep class com.google.**{*;}
+-keep class sun.misc.Unsafe { *; }
+-keep class com.google.gson.stream.** { *; }
+-keep class com.google.gson.examples.android.model.** { *; }
+
+#RxEasyHttp
 -keep class com.zhouyou.http.model.** {*;}
 -keep class com.zhouyou.http.cache.model.** {*;}
--keep class com.zhouyou.http.cache.stategy.**
+-keep class com.zhouyou.http.cache.stategy.**{*;}
 ```
+[请查看Demo中完整的混淆文件](https://github.com/zhou-you/RxEasyHttp/blob/master/app/proguard-rules.pro)
+
 ## 支持开源
 乐于赞赏，感谢朋友们的支持和鼓励，让我们一起努力做一些好东西! 
 可以使用「微信」「支付宝」客户端赞赏：

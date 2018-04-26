@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         mEmailView.setText("18688994275");
-        mPasswordView.setText("zy123456");
+        mPasswordView.setText("123456");
         rxPermissions = new RxPermissions(this);
         autoLogin();
     }
@@ -169,8 +169,9 @@ public class LoginActivity extends AppCompatActivity {
                         TokenManager.getInstance().setAuthModel(authModel);
                         //将用户和密码存入缓存
                         LoginCache.getInstance().save(name, pass);
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
+                        //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        //startActivity(intent);
+                        finish();
                     }
                 });
     }

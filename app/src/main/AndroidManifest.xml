@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoginActivity"
+            android:name=".MainActivity"
+            android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -24,23 +25,43 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".UploadActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".DownloadActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".CacheActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".CustomApiActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
             android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".SceneActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".PollActivity">
+        </activity>
+        <activity android:name=".SearchActivity">
         </activity>
     </application>
 

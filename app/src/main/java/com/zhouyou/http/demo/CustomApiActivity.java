@@ -94,7 +94,7 @@ public class CustomApiActivity extends AppCompatActivity {
                 .params("phone", "18688994275")
                 .params("dtype", "json")
                 .params("key", "5682c1f44a7f486e40f9720d6c97ffe4")
-                .execute(new CallClazzProxy<CustomApiResult<ResultBean>, ResultBean>(ResultBean.class) {
+                .execute(new CallClazzProxy<TestApiResult1<ResultBean>, ResultBean>(ResultBean.class) {
                 });
         observable.subscribe(new ProgressSubscriber<ResultBean>(this, mProgressDialog) {
             @Override
@@ -135,9 +135,9 @@ public class CustomApiActivity extends AppCompatActivity {
     }
     
     public void onTestThree(View view){
-        EasyHttp.post("http://218.25.174.167:7009/dlydbg/api/user/login")
+        EasyHttp.post("http://xxx.xx.xx/dlydbg/api/user/login")
                 //{"version":"2.5.0","phone":"13012463189","imei":"6789098763343","imsi":"6675343576887","gwkl":"dl_sj1192"}
-                .upJson("{\"version\":\"2.5.0\",\"phone\":\"18688994275\",\"imei\":\"6789098763343\",\"imsi\":\"6675343576887\",\"gwkl\":\"dl_sj1192\"}")
+                .upJson("{\"\":\"2.5.0\",\"\":\"\",\"\":\"\",\"\":\"\",\"gwkl\":\"\"}")
                 .execute(new CallBackProxy<TestApiResult3<List<String>>, List<String>>(new ProgressDialogCallBack<List<String>>(mProgressDialog) {
                     @Override
                     public void onError(ApiException e) {
@@ -154,9 +154,9 @@ public class CustomApiActivity extends AppCompatActivity {
     }
     
     public void onTestFour(View view){
-        EasyHttp.post("api/xzbg/gwcl/getGwlist")
-                .baseUrl("http://218.25.174.167:7009/dlydbg/")
-                .upJson("{\"imei\":\"862155035349405\",\"imsi\":\"123456789\",\"phone\":\"18688994275\",\"swjg_dm\":\"\",\"swry_dm\":\"127053096\",\"version\":\"1.0.0\"}")
+        EasyHttp.post("api/")
+                .baseUrl("http://xxx.xx.xx/dlydbg/")
+                .upJson("{\"\":\"\",\"\":\"\",\"\":\"\",\"\":\"\",\"\":\"\",\"version\":\"1.0.0\"}")
                 .cacheMode(CacheMode.CACHEANDREMOTE)
                 .cacheKey(this.getClass().getSimpleName()+"test")
                  //方式一
